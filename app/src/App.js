@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import Header from "./components/Header";
 import FilterSortPanel from "./components/FilterSortPanel";
 import Listings from "./components/Listings";
@@ -7,8 +7,8 @@ export default function App() {
     const [sort, setSort] = useState("Choose");
 
     const [filter, setFilter] = useState({
-        dateStart: "",
-        dateEnd: "",
+        startYear: "",
+        endYear: "",
         revenueMin: 0,
         revenueMax: 100,
         netIncomeMin: 0,
@@ -41,6 +41,7 @@ export default function App() {
                     filter={filter}
                 />
             </section>
+            {filter.netIncomeMax}
         </main>
     );
 }

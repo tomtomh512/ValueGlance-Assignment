@@ -14,10 +14,15 @@ export default function FilterSortPanel(props) {
     };
 
     return (
-        <main className="m-4">
-            <div>
-                <label>Sort:</label>
-                <select value={sort} onChange={handleSortChange}>
+        <main className="m-4 p-2 bg-customDarkBlue rounded-[14px] text-xl">
+            <div className="my-4 text-center">
+                <label className="font-bold text-white">Sort:</label>
+                &nbsp;
+                <select
+                    value={sort} o
+                    onChange={handleSortChange}
+                    className="rounded-[14px] px-2"
+                >
                     <option value="Choose">Choose</option>
                     <option value="Date (Ascending)">Date (Ascending)</option>
                     <option value="Date (Descending)">Date (Descending)</option>
@@ -28,62 +33,71 @@ export default function FilterSortPanel(props) {
                 </select>
             </div>
 
-            <br />
+            <hr className="border-white"/>
 
-            <div>
+            <div className="my-4 text-white">
                 <label>Date Range:</label>
-                <br />
+                <br/>
                 <input
                     type="text"
-                    name="dateStart"
-                    placeholder="Start Date"
-                    value={filter.dateStart}
+                    name="startYear"
+                    placeholder="Start Year"
+                    value={filter.startYear}
                     onChange={handleFilterChange}
+                    className="w-2/5 rounded-[14px] px-4 text-black mt-1"
                 />
+                &nbsp; to &nbsp;
                 <input
                     type="text"
-                    name="dateEnd"
-                    placeholder="End Date"
-                    value={filter.dateEnd}
+                    name="endYear"
+                    placeholder="End Year"
+                    value={filter.endYear}
                     onChange={handleFilterChange}
+                    className="w-2/5 rounded-[14px] px-4 text-black mt-1"
                 />
             </div>
 
-            <div>
+            <div className="my-4 text-white">
                 <label>Revenue Range:</label>
-                <br />
+                <br/>
                 <input
                     type="number"
                     name="revenueMin"
                     placeholder="Min Revenue"
                     value={filter.revenueMin}
                     onChange={handleFilterChange}
+                    className="w-2/5 rounded-[14px] px-4 text-black mt-1"
                 />
+                &nbsp; to &nbsp;
                 <input
                     type="number"
                     name="revenueMax"
                     placeholder="Max Revenue"
                     value={filter.revenueMax}
                     onChange={handleFilterChange}
+                    className="w-2/5 rounded-[14px] px-4 text-black mt-1"
                 />
             </div>
 
-            <div>
+            <div className="my-4 text-white">
                 <label>Net Income Range:</label>
-                <br />
+                <br/>
                 <input
                     type="number"
                     name="netIncomeMin"
                     placeholder="Min Net Income"
                     value={filter.netIncomeMin}
                     onChange={handleFilterChange}
+                    className="w-2/5 rounded-[14px] px-4 text-black mt-1"
                 />
+                &nbsp; to &nbsp;
                 <input
                     type="number"
                     name="netIncomeMax"
                     placeholder="Max Net Income"
                     value={filter.netIncomeMax}
                     onChange={handleFilterChange}
+                    className="w-2/5 rounded-[14px] px-4 text-black"
                 />
             </div>
         </main>
