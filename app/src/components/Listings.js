@@ -14,18 +14,15 @@ export default function Listings(props) {
     const [listings, setListings] = useState([]);
 
     const listingsElements = listings.map((data) => (
-        <table className="mb-4 border-2 border-black">
-            <tr>
-                <td>Data: {data.date}</td>
-                <td>Revenue: ${insertComma(data.revenue)}</td>
-                <td>Net Income: ${insertComma(data.netIncome)}</td>
-            </tr>
-            <tr>
-                <td>Gross Profit: ${insertComma(data.grossProfit)}</td>
-                <td>EPS (Earnings Per Share): ${insertComma(data.eps)}</td>
-                <td>Operating Income: ${insertComma(data.operatingIncome)}</td>
-            </tr>
-        </table>
+        <tr>
+            <td>{data.date}</td>
+            <td>${insertComma(data.revenue)}</td>
+            <td>${insertComma(data.netIncome)}</td>
+            <td>${insertComma(data.grossProfit)}</td>
+            <td>${insertComma(data.eps)}</td>
+            <td>${insertComma(data.operatingIncome)}</td>
+        </tr>
+
     ));
 
     useEffect(() => {
@@ -42,8 +39,18 @@ export default function Listings(props) {
     }, [sort, filter]);
 
     return (
-        <main className="m-4">
-            {listingsElements}
+        <main className="m-4 text-center text-xl flex-1">
+            <table className="w-full text-xl p-2 text-center">
+                <tr>
+                    <th>Date</th>
+                    <th>Revenue</th>
+                    <th>Net Income</th>
+                    <th>Gross Profit</th>
+                    <th>EPS</th>
+                    <th>Operating Income</th>
+                </tr>
+                {listingsElements}
+            </table>
         </main>
     );
 }

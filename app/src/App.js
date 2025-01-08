@@ -27,7 +27,7 @@ export default function App() {
     };
 
     return (
-        <main className="font-montserrat">
+        <main className="font-montserrat text-center">
             <Header />
             <section className="flex flex-col md:flex-row">
                 <FilterSortPanel
