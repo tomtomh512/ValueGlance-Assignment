@@ -32,12 +32,12 @@ export default function Listings(props) {
         let url = "https://financialmodelingprep.com/api/v3/income-statement/AAPL?period=annual&apikey=";
         let apiKey = process.env.REACT_APP_API_KEY;
 
-        // fetch(url + apiKey)
-        //     .then(res => res.json())
-        //     .then(output => {
-        //         setListings(output);
-        //     })
-        //     .catch(err => console.error("Error", err));
+        fetch(url + apiKey)
+            .then(res => res.json())
+            .then(output => {
+                setListings(output);
+            })
+            .catch(err => console.error("Error", err));
 
     }, [sort, filter]);
 

@@ -9,10 +9,10 @@ export default function App() {
     const [filter, setFilter] = useState({
         startYear: "",
         endYear: "",
-        revenueMin: 0,
-        revenueMax: 100,
-        netIncomeMin: 0,
-        netIncomeMax: 100,
+        revenueMin: "",
+        revenueMax: "",
+        netIncomeMin: "",
+        netIncomeMax: "",
     });
 
     const handleSortChange = (value) => {
