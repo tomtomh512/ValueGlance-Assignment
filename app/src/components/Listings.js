@@ -76,7 +76,7 @@ export default function Listings(props) {
     }, []);
 
     return (
-        <main className="m-4 text-center text-2xl flex-1">
+        <main className="m-4 text-2xl flex-1">
 
             <section className="flex flex-col md:flex-row p-2 font-bold text-3xl">
                 <h1> AAPL Annual Income Statements </h1>
@@ -100,17 +100,17 @@ export default function Listings(props) {
             <br/>
 
             <table className="w-full text-xl p-2 text-center">
-                <thead>
+                <thead className="text-2xl">
                 <tr className="bg-gray-300">
-                    <th className="text-2xl">Date</th>
-                    <th className="text-2xl">Revenue</th>
-                    <th className="text-2xl">Net Income</th>
-                    <th className="text-2xl">Gross Profit</th>
-                    <th className="text-2xl">EPS</th>
-                    <th className="text-2xl">Operating Income</th>
+                    <th>Date</th>
+                    <th>Revenue</th>
+                    <th>Net Income</th>
+                    <th>Gross Profit</th>
+                    <th>EPS</th>
+                    <th>Operating Income</th>
                 </tr>
                 </thead>
-                <tbody>{listingsElements}</tbody>
+                <tbody className="text-xl">{listingsElements}</tbody>
             </table>
 
         </main>

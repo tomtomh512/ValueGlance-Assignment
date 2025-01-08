@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from "./components/Header";
-import FilterSortPanel from "./components/FilterSortPanel";
+import FilterPanel from "./components/FilterPanel";
 import Listings from "./components/Listings";
 
 export default function App() {
@@ -24,7 +24,7 @@ export default function App() {
         <main className="font-montserrat text-center">
             <Header />
             <section className="flex flex-col md:flex-row">
-                <FilterSortPanel
+                <FilterPanel
                     filter={filter}
                     onFilterChange={handleFilterChange}
                 />
