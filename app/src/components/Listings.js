@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
 function insertComma(value) {
-    if (typeof value === 'number') {
-        return new Intl.NumberFormat().format(value);
-    }
-    return value; // Return the value as-is if it's not a number
+    return new Intl.NumberFormat().format(value);
 }
 
 export default function Listings(props) {
     const { sort, filter } = props;
 
-    // Initialize state for listings
     const [listings, setListings] = useState([]);
 
-    const listingsElements = listings.map((data) => (
-        <tr>
+    const listingsElements = listings.map((data, index) => (
+        <tr key={index}>
             <td>{data.date}</td>
             <td>${insertComma(data.revenue)}</td>
             <td>${insertComma(data.netIncome)}</td>
@@ -39,17 +35,21 @@ export default function Listings(props) {
     }, [sort, filter]);
 
     return (
-        <main className="m-4 text-center text-xl flex-1">
-            <table className="w-full text-xl p-2 text-center">
-                <tr>
-                    <th>Date</th>
-                    <th>Revenue</th>
-                    <th>Net Income</th>
-                    <th>Gross Profit</th>
-                    <th>EPS</th>
-                    <th>Operating Income</th>
-                </tr>
-                {listingsElements}
+        <main className="m-4 text-center text-2xl flex-1">
+            <table className="w-full text-xl p-2 text-center border-customBlue">
+                <thead>
+                    <tr>
+                        <th className="text-2xl">Date</th>
+                        <th className="text-2xl">Revenue</th>
+                        <th className="text-2xl">Net Income</th>
+                        <th className="text-2xl">Gross Profit</th>
+                        <th className="text-2xl">EPS</th>
+                        <th className="text-2xl">Operating Income</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {listingsElements}
+                </tbody>
             </table>
         </main>
     );
