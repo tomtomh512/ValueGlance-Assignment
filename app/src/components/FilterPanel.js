@@ -4,6 +4,7 @@ import FilterInputs from './FilterInputs';
 export default function FilterPanel(props) {
     const { filter, onFilterChange } = props;
 
+    // Boolean to hide or show filter panel
     const [showPanel, setShowPanel] = useState(true);
 
     const handleFilterChange = (event) => {
@@ -15,11 +16,14 @@ export default function FilterPanel(props) {
         setShowPanel((prevShowPanel) => !prevShowPanel); // Toggles the state
     };
 
+    // Always show panel in desktop view
     const handleResize = () => {
         if (window.innerWidth > 640) {
             setShowPanel(true);
         }
     };
+
+    // Use useEffect to add an event listener for window resizing
     useEffect(() => {
         window.addEventListener('resize', handleResize);
         return () => {

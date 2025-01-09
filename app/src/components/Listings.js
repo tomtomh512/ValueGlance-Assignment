@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+// Function to shorten inserting commas into large numbers
 function insertComma(value) {
     return new Intl.NumberFormat().format(value);
 }
@@ -10,25 +11,35 @@ export default function Listings(props) {
     const [sort, setSort] = useState("Sort");
     const [listings, setListings] = useState([]);
 
-    // Apply sorting and filtering
+    const handleSortChange = (event) => {
+        const { value } = event.target;
+        setSort(value);
+    };
+
     const processedListings = listings
         .filter((data) => {
-            // Apply filter conditions
+            // Extract year & gets revenue and net income
             const year = parseInt(data.date.split("-")[0], 10);
             const revenue = parseFloat(data.revenue);
             const netIncome = parseFloat(data.netIncome);
 
+            // Get bounds from filter
+            const startYearBound = filter.startYear ? parseInt(filter.startYear, 10) : undefined;
+            const endYearBound = filter.endYear ? parseInt(filter.endYear, 10) : undefined;
+            const revenueMinBound = filter.revenueMin ? parseFloat(filter.revenueMin) : undefined;
+            const revenueMaxBound = filter.revenueMax ? parseFloat(filter.revenueMax) : undefined;
+            const netIncomeMinBound = filter.netIncomeMin ? parseFloat(filter.netIncomeMin) : undefined;
+            const netIncomeMaxBound = filter.netIncomeMax ? parseFloat(filter.netIncomeMax) : undefined;
+
             return (
-                (!filter.startYear || year >= parseInt(filter.startYear, 10)) &&
-                (!filter.endYear || year <= parseInt(filter.endYear, 10)) &&
-                (!filter.revenueMin || revenue >= parseFloat(filter.revenueMin)) &&
-                (!filter.revenueMax || revenue <= parseFloat(filter.revenueMax)) &&
-                (!filter.netIncomeMin || netIncome >= parseFloat(filter.netIncomeMin)) &&
-                (!filter.netIncomeMax || netIncome <= parseFloat(filter.netIncomeMax))
+                (!startYearBound || year >= startYearBound) && (!endYearBound || year <= endYearBound) &&
+                (!revenueMinBound || revenue >= revenueMinBound) && (!revenueMaxBound || revenue <= revenueMaxBound) &&
+                (!netIncomeMinBound || netIncome >= netIncomeMinBound) && (!netIncomeMaxBound || netIncome <= netIncomeMaxBound)
             );
         })
+
         .sort((a, b) => {
-            // Apply sorting conditions
+            // Apply sorting
             switch (sort) {
                 case "Date (Ascending)":
                     return new Date(a.date) - new Date(b.date);
@@ -47,6 +58,7 @@ export default function Listings(props) {
             }
         });
 
+    // Create elements for listings
     const listingsElements = processedListings.map((data, index) => (
         <tr key={index} className={`${index % 2 !== 0 ? 'bg-gray-300' : ''}`}>
             <td>{data.date}</td>
@@ -57,11 +69,6 @@ export default function Listings(props) {
             <td>${insertComma(data.operatingIncome)}</td>
         </tr>
     ));
-
-    const handleSortChange = (event) => {
-        const { value } = event.target;
-        setSort(value);
-    };
 
     useEffect(() => {
         let url = "https://financialmodelingprep.com/api/v3/income-statement/AAPL?period=annual&apikey=";
@@ -77,7 +84,6 @@ export default function Listings(props) {
 
     return (
         <main className="m-4 text-2xl flex-1">
-
             <section className="flex flex-col md:flex-row p-2 font-bold text-3xl">
                 <h1> AAPL Annual Income Statements </h1>
 
@@ -97,21 +103,21 @@ export default function Listings(props) {
                 </div>
             </section>
 
-            <br/>
-
-            <table className="w-full text-xl p-2 text-center">
-                <thead className="text-2xl">
-                <tr className="bg-gray-300">
-                    <th>Date</th>
-                    <th>Revenue</th>
-                    <th>Net Income</th>
-                    <th>Gross Profit</th>
-                    <th>EPS</th>
-                    <th>Operating Income</th>
-                </tr>
-                </thead>
-                <tbody className="text-xl">{listingsElements}</tbody>
-            </table>
+            <div className="overflow-x-auto mt-4">
+                <table className="w-full text-xl p-2 text-center">
+                    <thead className="text-lg sm:text-2xl">
+                    <tr className="bg-gray-300">
+                        <th>Date</th>
+                        <th>Revenue</th>
+                        <th>Net Income</th>
+                        <th>Gross Profit</th>
+                        <th>EPS</th>
+                        <th>Operating Income</th>
+                    </tr>
+                    </thead>
+                    <tbody className="text-base sm:text-xl">{listingsElements}</tbody>
+                </table>
+            </div>
 
         </main>
     );
