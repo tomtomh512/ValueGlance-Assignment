@@ -6,5 +6,5 @@
 
 <h2> Link to deployed app </h2>
 <ul>
-    <li> Link </li>
+    <li> https://financial-data-filtering-app.netlify.app/ </li>
 </ul>
