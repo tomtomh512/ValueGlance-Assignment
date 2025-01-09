@@ -103,7 +103,7 @@ export default function Listings(props) {
                 </div>
             </section>
 
-            <div className="overflow-x-auto mt-4">
+            <div className="overflow-x-auto mt-4 rounded-lg border border-grey-D9">
                 <table className="w-full text-xl p-2 text-center">
                     <thead className="text-lg sm:text-2xl">
                     <tr className="bg-gray-300">
